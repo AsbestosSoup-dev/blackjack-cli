@@ -20,7 +20,7 @@ impl Game {
             self.config = config;
         } else {
             let mut input = String::new();
-            
+
             // Interactive mode
             loop {
                 print!("How many players? (max. 4): ");
@@ -28,11 +28,11 @@ impl Game {
                 if let Ok(num_players) = stdin().read_line(&mut input) {
                     println!("{num_players}");
                     // if (1..=4).contains(num_players.) {
-                    // 
+                    //
                     // }
                 }
-            } 
-            
+            }
+
         }
     }
 }
