@@ -128,7 +128,7 @@ impl Deck {
         Ok(Deck {
             cards: Self::build_deck(num_decks),
             num_decks,
-            cut_position,
+            cut_position, // Todo: loop cut_position - 1 times vs checking condition every cycle
             top_index: 0
         })
     }
@@ -200,7 +200,7 @@ impl fmt::Display for DeckError {
             ),
             DeckError::InvalidPenetration {penetration} => write!(
                 f,
-                "Penetration must be between 0.0 and 1.0. Entered: {:.3}.",
+                "Penetration must be between 0.0 and 1.0. Entered: {:.3}",
                 penetration
             )
         }
