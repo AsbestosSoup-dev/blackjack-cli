@@ -196,13 +196,39 @@ impl fmt::Display for DeckError {
         match self {
             DeckError::InvalidNumDecks {num_decks} => write!(
                 f,
-                "Number of decks must be between 1 and 8. Entered: {num_decks}"
+                "Number of decks must be between 1 and 8. Got `{num_decks}`"
             ),
             DeckError::InvalidPenetration {penetration} => write!(
                 f,
-                "Penetration must be between 0.0 and 1.0. Entered: {:.3}",
+                "Penetration must be between 0.0 and 1.0. Got `{:.3}`",
                 penetration
             )
         }
+    }
+}
+
+struct Hand {
+    cards: Vec<Card>,
+    is_doubled: bool,
+    is_busted: bool,
+}
+
+impl Hand {
+    fn new() -> Self {
+        Hand {
+            cards: Vec::new(),
+            is_doubled: false,
+            is_busted: false,
+        }
+    }
+    
+    fn add_card(&mut self, card: Card) {
+        self.cards.push(card);
+    }
+    
+    fn split(&mut self) -> Self {
+        let mut new_hand = Hand::new();
+        new_hand.add_card(self.cards.pop().unwrap());
+        new_hand
     }
 }
